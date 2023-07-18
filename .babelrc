@@ -1,19 +1,42 @@
 {
-    "env": {
-      "development": {
-        "presets": ["next/babel"],
-        "plugins": [
-          ["module-resolver", { "root": ["./"] }],
-          ["inline-dotenv"]
+  "env": {
+    "development": {
+      "presets": [
+        "next/babel"
+      ],
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "root": [
+              "./"
+            ]
+          }
+        ],
+        [
+          "inline-dotenv",
+          null
         ]
-      },
-      "production": {
-        "presets": ["next/babel"],
-        "plugins": [
-          ["module-resolver", { "root": ["./"] }],
-          ["inline-dotenv"]
+      ]
+    },
+    "production": {
+      "presets": [
+        "next/babel"
+      ],
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "root": [
+              "./"
+            ]
+          }
+        ],
+        [
+          "inline-dotenv",
+          null
         ]
-      }
+      ]
     }
   }
-  
+}

@@ -22,14 +22,14 @@ class Search extends React.Component {
                                     {s.teaser}
                                 </p>
                                 <div>
-                                    <Link href={s.permalink}><a>Read more</a></Link>
+                                    <Link href={s.permalink}>Read more</Link>
                                 </div>
                             </div>
                         )
                     }
                 </div>
             </div>
-		);
+        );
 	}
 }
 

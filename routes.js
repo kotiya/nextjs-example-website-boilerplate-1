@@ -1,5 +1,8 @@
-const nextRoutes = require('next-routes')
-const routes = module.exports = nextRoutes()
+import nextRoutes from 'next-routes';
 
-routes.add('blog', '/blog/:slug?')
-routes.add('generic', '/:pagename')
+const routes = nextRoutes();
+
+routes.add('blog', '/blog/:slug?');
+routes.add('generic', '/:pagename');
+
+export default routes;
