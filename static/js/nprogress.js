@@ -18,6 +18,6 @@ function applyCss(element,prop,value){prop=getStyleProp(prop);element.style[prop
 return function(element,properties){var args=arguments,prop,value;if(args.length==2){for(prop in properties){value=properties[prop];if(value!==undefined&&properties.hasOwnProperty(prop))applyCss(element,prop,value);}}else{applyCss(element,args[1],args[2]);}}})();function hasClass(element,name){var list=typeof element=='string'?element:classList(element);return list.indexOf(' '+ name+' ')>=0;}
 function addClass(element,name){var oldList=classList(element),newList=oldList+ name;if(hasClass(oldList,name))return;element.className=newList.substring(1);}
 function removeClass(element,name){var oldList=classList(element),newList;if(!hasClass(element,name))return;newList=oldList.replace(' '+ name+' ',' ');element.className=newList.substring(1,newList.length- 1);}
-function classList(element){return(' '+(element.className||'')+' ').replace(/\s+/gi,' ');}
+function classList(element){return (' '+(element.className||'')+' ').replace(/\s+/gi,' ');}
 function removeElement(element){element&&element.parentNode&&element.parentNode.removeChild(element);}
 return NProgress;});
