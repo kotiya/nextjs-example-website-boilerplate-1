@@ -1,22 +1,21 @@
 import React from 'react';
 import Router from 'next/router';
 
-import { mapGlobals, mapHome } from 'utils/helperFuncs';
-import Head from 'next/head';
-import Meta from 'components/widgets/Meta';
-import Home from 'components/views/home'
+import { mapGlobals } from 'utils/helperFuncs';
+import { Metadata } from 'next/head';
+import Page from 'components/views/page'
 import Header from 'components/views/partials/header'
 import Footer from 'components/views/partials/footer'
 import Request from 'utils/request';
 
-class HomePage extends React.Component {
+class DynamicPage extends React.Component {
 
   static async getInitialProps({ req, query }) {
     const Response = await Request.getGlobals();
-    const homeResponse = await Request.getObject('home');
-    const home = mapHome(homeResponse.object);
+    const pageResponse = await Request.getObject(query.pagename);
+    const page = pageResponse.object;
     const globals = mapGlobals(Response.objects);
-    return { globals, home };
+    return { globals, page };
   }
 
   constructor(props){
@@ -28,25 +27,25 @@ class HomePage extends React.Component {
         social: props.globals.social,
         contactInfo: props.globals.contact_info.metadata,
         footer: props.globals.footer,
-        home: props.home
+        page: props.page
     }
   }
 
-	render() {
-		return (
-      <Meta>
-        <Head>
+    render() {
+        return (
+      <Metadata>
+        <Metadata>
           <title>Medical Professional ~ Cosmic JS Next Js App</title>
-          <meta name="description" content={ this.state.home.seo_description.value } />
+          <meta name="description" content={ this.state.page.metadata.seo_description.value } />
           <link rel="icon" type="image/png" href={`${this.state.header.metadata.favicon.imgix_url}?w=32`} sizes="32x32" />
           <link rel="icon" type="image/png" href={`${this.state.header.metadata.favicon.imgix_url}?w=16`} sizes="16x16" />
-        </Head>
+        </Metadata>
         <Header header={this.state.header} nav={this.state.nav} />
-        <Home home={this.state.home}></Home>
+        <Page page={this.state.page}></Page>
         <Footer footer={this.state.footer} social={this.state.social} contactInfo={this.state.contactInfo} />
-      </Meta>
-		);
-	}
+      </Metadata>
+        );
+    }
 }
 
-export default HomePage;
+export default DynamicPage;

@@ -1,22 +1,21 @@
 import React from 'react';
 import Router from 'next/router';
 
-import { mapGlobals, mapFaqs } from 'utils/helperFuncs';
-import Head from 'next/head';
-import Meta from 'components/widgets/Meta';
-import Faq from 'components/views/faq'
+import { mapGlobals, mapHome } from 'utils/helperFuncs';
+import { Metadata } from 'next/head';
+import Home from 'components/views/home'
 import Header from 'components/views/partials/header'
 import Footer from 'components/views/partials/footer'
 import Request from 'utils/request';
 
-class FaqPage extends React.Component {
+class HomePage extends React.Component {
 
   static async getInitialProps({ req, query }) {
     const Response = await Request.getGlobals();
-    const faqResponse = await Request.getObject('faqs');
-    const faq = mapFaqs(faqResponse.object);
+    const homeResponse = await Request.getObject('home');
+    const home = mapHome(homeResponse.object);
     const globals = mapGlobals(Response.objects);
-    return { globals, faq };
+    return { globals, home };
   }
 
   constructor(props){
@@ -28,25 +27,25 @@ class FaqPage extends React.Component {
         social: props.globals.social,
         contactInfo: props.globals.contact_info.metadata,
         footer: props.globals.footer,
-        faq: props.faq
+        home: props.home
     }
   }
 
-	render() {
-		return (
-      <Meta>
-        <Head>
+    render() {
+        return (
+      <Metadata>
+        <Metadata>
           <title>Medical Professional ~ Cosmic JS Next Js App</title>
-          <meta name="description" content={ this.state.faq.seo_description.value } />
+          <meta name="description" content={ this.state.home.seo_description.value } />
           <link rel="icon" type="image/png" href={`${this.state.header.metadata.favicon.imgix_url}?w=32`} sizes="32x32" />
           <link rel="icon" type="image/png" href={`${this.state.header.metadata.favicon.imgix_url}?w=16`} sizes="16x16" />
-        </Head>
+        </Metadata>
         <Header header={this.state.header} nav={this.state.nav} />
-        <Faq faq={this.state.faq}></Faq>
+        <Home home={this.state.home}></Home>
         <Footer footer={this.state.footer} social={this.state.social} contactInfo={this.state.contactInfo} />
-      </Meta>
-		);
-	}
+      </Metadata>
+        );
+    }
 }
 
-export default FaqPage;
+export default HomePage;
