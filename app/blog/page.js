@@ -2,8 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 
 import { mapGlobals } from 'utils/helperFuncs';
-import Head from 'next/head';
-import Meta from 'components/widgets/Meta';
+import Metadata from 'components/widgets/Metadata';
 import Blog from 'components/views/blog'
 import Header from 'components/views/partials/header'
 import Footer from 'components/views/partials/footer'
@@ -31,21 +30,21 @@ class BlogPage extends React.Component {
     super(props);
   }
 
-	render() {
+    render() {
     return (
-      <Meta>
-        <Head>
-          <title>Medical Professional ~ Cosmic JS Next Js App</title>
-          <meta name="description" content={ this.props.blogPage.metadata.seo_description.value } />
-          <link rel="icon" type="image/png" href={`${this.props.globals.header.metadata.favicon.imgix_url}?w=32`} sizes="32x32" />
-          <link rel="icon" type="image/png" href={`${this.props.globals.header.metadata.favicon.imgix_url}?w=16`} sizes="16x16" />
-        </Head>
+      <Metadata>
+        <Metadata.Head>
+          <Metadata.Title>Medical Professional ~ Cosmic JS Next Js App</Metadata.Title>
+          <Metadata.Description>{ this.props.blogPage.metadata.seo_description.value }</Metadata.Description>
+          <Metadata.Link rel="icon" type="image/png" href={`${this.props.globals.header.metadata.favicon.imgix_url}?w=32`} sizes="32x32" />
+          <Metadata.Link rel="icon" type="image/png" href={`${this.props.globals.header.metadata.favicon.imgix_url}?w=16`} sizes="16x16" />
+        </Metadata.Head>
         <Header header={this.props.globals.header} nav={this.props.globals.nav} />
         <Blog blogs={this.props.blogs} blog={this.props.blog}></Blog>
         <Footer footer={this.props.globals.footer} social={this.props.globals.social} contactInfo={this.props.globals.contact_info.metadata} />
-      </Meta>
-		);
-	}
+      </Metadata>
+    );
+  }
 }
 
 export default BlogPage;

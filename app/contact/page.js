@@ -1,7 +1,6 @@
 import React from 'react';
-
 import { mapGlobals } from 'utils/helperFuncs';
-import Head from 'next/head';
+import { Metadata } from 'next/head';
 import Meta from 'components/widgets/Meta';
 import Contact from 'components/views/contact'
 import Header from 'components/views/partials/header'
@@ -97,21 +96,21 @@ class ContactPage extends React.Component {
         }
     }
 
-	render() {
-		return (
+    render() {
+        return (
       <Meta>
-        <Head>
+        <Metadata>
           <title>Medical Professional ~ Cosmic JS Next Js App</title>
           <meta name="description" content={ this.state.contact.metadata.seo_description.value } />
           <link rel="icon" type="image/png" href={`${this.state.header.metadata.favicon.imgix_url}?w=32`} sizes="32x32" />
           <link rel="icon" type="image/png" href={`${this.state.header.metadata.favicon.imgix_url}?w=16`} sizes="16x16" />
-        </Head>
+        </Metadata>
         <Header header={this.state.header} nav={this.state.nav} />
         <Contact formStatus={this.state.form_status} handleChange={this.handleChange} submitForm={this.submitForm} form={this.state.form} formValidation={this.state.form_validation} contact={this.state.contact}></Contact>
         <Footer footer={this.state.footer} social={this.state.social} contactInfo={this.state.contactInfo} />
       </Meta>
-		);
-	}
+        );
+    }
 }
 
 export default ContactPage;

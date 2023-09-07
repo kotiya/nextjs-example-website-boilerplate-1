@@ -2,7 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 
 import { mapGlobals } from 'utils/helperFuncs';
-import Head from 'next/head';
+import { Metadata } from 'next/head';
 import Meta from 'components/widgets/Meta';
 import AboutUs from 'components/views/about-us'
 import Header from 'components/views/partials/header'
@@ -32,21 +32,21 @@ class AboutUsPage extends React.Component {
     }
   }
 
-	render() {
-		return (
+    render() {
+        return (
       <Meta>
-        <Head>
+        <Metadata>
           <title>Medical Professional ~ Cosmic JS Next Js App</title>
           <meta name="description" content={ this.state.aboutUs.metadata.seo_description.value } />
           <link rel="icon" type="image/png" href={`${this.state.header.metadata.favicon.imgix_url}?w=32`} sizes="32x32" />
           <link rel="icon" type="image/png" href={`${this.state.header.metadata.favicon.imgix_url}?w=16`} sizes="16x16" />
-        </Head>
+        </Metadata>
         <Header header={this.state.header} nav={this.state.nav} />
         <AboutUs aboutUs={this.state.aboutUs}></AboutUs>
         <Footer footer={this.state.footer} social={this.state.social} contactInfo={this.state.contactInfo} />
       </Meta>
-		);
-	}
+        );
+    }
 }
 
 export default AboutUsPage;

@@ -2,8 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 
 import { mapGlobals } from 'utils/helperFuncs';
-import Head from 'next/head';
-import Meta from 'components/widgets/Meta';
+import { Metadata } from 'next/head';
 import Page from 'components/views/page'
 import Header from 'components/views/partials/header'
 import Footer from 'components/views/partials/footer'
@@ -32,21 +31,21 @@ class DynamicPage extends React.Component {
     }
   }
 
-	render() {
-		return (
-      <Meta>
-        <Head>
+    render() {
+        return (
+      <Metadata>
+        <Metadata>
           <title>Medical Professional ~ Cosmic JS Next Js App</title>
           <meta name="description" content={ this.state.page.metadata.seo_description.value } />
           <link rel="icon" type="image/png" href={`${this.state.header.metadata.favicon.imgix_url}?w=32`} sizes="32x32" />
           <link rel="icon" type="image/png" href={`${this.state.header.metadata.favicon.imgix_url}?w=16`} sizes="16x16" />
-        </Head>
+        </Metadata>
         <Header header={this.state.header} nav={this.state.nav} />
         <Page page={this.state.page}></Page>
         <Footer footer={this.state.footer} social={this.state.social} contactInfo={this.state.contactInfo} />
-      </Meta>
-		);
-	}
+      </Metadata>
+        );
+    }
 }
 
 export default DynamicPage;
